@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 # by @嗷呜
-import random
 import sys
 from base64 import b64encode, b64decode
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from urllib.parse import urlencode
+import secrets
+
 sys.path.append('..')
 from base.spider import Spider
 
@@ -245,4 +246,4 @@ class Spider(Spider):
 
     def random_str(self,length=16):
         hex_chars = '0123456789abcdef'
-        return ''.join(random.choice(hex_chars) for _ in range(length))
+        return ''.join(secrets.choice(hex_chars) for _ in range(length))

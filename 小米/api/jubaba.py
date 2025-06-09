@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 # by @嗷呜
 import json
-import random
 import re
 import sys
 import time
@@ -10,6 +9,8 @@ import concurrent.futures
 import requests
 from Crypto.Hash import MD5
 from pyquery import PyQuery as pq
+import secrets
+
 sys.path.append('..')
 from base.spider import Spider
 
@@ -217,8 +218,8 @@ class Spider(Spider):
                 code = char
             else:
                 code = staticchars[(num0 + 3) % 62]
-            num1 = random.randint(0, 61)
-            num2 = random.randint(0, 61)
+            num1 = secrets.SystemRandom().randint(0, 61)
+            num2 = secrets.SystemRandom().randint(0, 61)
             encodechars += staticchars[num1] + code + staticchars[num2]
         return self.e64(encodechars)
 

@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 # by @嗷呜
 import json
-import random
 import string
 import sys
 from base64 import b64decode, b64encode
 from urllib.parse import quote, unquote
+import secrets
+
 sys.path.append('..')
 import concurrent.futures
 from base.spider import Spider
@@ -161,7 +162,7 @@ class Spider(Spider):
 
     def getunc(self):
         chars = string.ascii_lowercase + string.digits
-        data = ''.join(random.choice(chars) for _ in range(16))
+        data = ''.join(secrets.choice(chars) for _ in range(16))
         return self.e64(data)
 
     def e64(self, text):

@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 # by @嗷呜
 import json
-import random
 import sys
 from base64 import b64encode, b64decode
 from concurrent.futures import ThreadPoolExecutor
+import secrets
+
 sys.path.append('..')
 from base.spider import Spider
 
@@ -173,7 +174,7 @@ class Spider(Spider):
         did=self.getCache('ldid')
         if not did:
             hex_chars = '0123456789abcdef'
-            did =''.join(random.choice(hex_chars) for _ in range(16))
+            did =''.join(secrets.choice(hex_chars) for _ in range(16))
             self.setCache('ldid',did)
         return did
 
