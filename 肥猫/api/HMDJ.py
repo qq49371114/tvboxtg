@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
-import requests
 import re
 import json
 import traceback
 import sys
 from urllib.parse import quote
+from security import safe_requests
 
 sys.path.append('../../')
 try:
@@ -50,7 +50,7 @@ class Spider(Spider):
         
         for i in range(retry + 1):
             try:
-                response = requests.get(url, headers=headers, timeout=10, allow_redirects=True)
+                response = safe_requests.get(url, headers=headers, timeout=10, allow_redirects=True)
                 response.raise_for_status()
                 return response
             except Exception as e:
