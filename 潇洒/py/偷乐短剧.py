@@ -9,6 +9,7 @@ import time
 import urllib.parse
 import requests
 from bs4 import BeautifulSoup
+from security import safe_requests
 
 # 导入基础类
 sys.path.append('../../')
@@ -87,7 +88,7 @@ class Spider(Spider):
                 headers = self.headers.copy()
                 
             if method.upper() == "GET":
-                response = requests.get(url, headers=headers, params=data, timeout=10,verify=False)
+                response = safe_requests.get(url, headers=headers, params=data, timeout=10,verify=False)
             else:  # POST
                 response = requests.post(url, headers=headers, data=data, timeout=10,verify=False)
                 

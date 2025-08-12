@@ -22,13 +22,13 @@ import urllib.request
 import urllib.parse
 import datetime
 import binascii
-import requests
 import base64
 import json
 import time
 import sys
 import re
 import os
+from security import safe_requests
 
 sys.path.append('..')
 
@@ -149,7 +149,7 @@ class Spider(Spider):
             page = 1
 
         url = f'{xurl}/live?keyword={cid}&page={str(page)}'
-        detail = requests.get(url=url, headers=headerx)
+        detail = safe_requests.get(url=url, headers=headerx)
         detail.encoding = "utf-8"
         res = detail.text
         doc = BeautifulSoup(res, "lxml")
@@ -194,7 +194,7 @@ class Spider(Spider):
         bofang = ''
 
         url = f'{xurl1}/xlive/web-room/v2/index/getRoomPlayInfo?room_id={did}&platform=web&protocol=0,1&format=0,1,2&codec=0,1'
-        detail = requests.get(url=url, headers=headerx)
+        detail = safe_requests.get(url=url, headers=headerx)
         detail.encoding = "utf-8"
         data = detail.json()
 
@@ -256,7 +256,7 @@ class Spider(Spider):
             page = 1
 
         url = f'{xurl}/live?keyword={key}&page={str(page)}'
-        detail = requests.get(url=url, headers=headerx)
+        detail = safe_requests.get(url=url, headers=headerx)
         detail.encoding = "utf-8"
         res = detail.text
         doc = BeautifulSoup(res, "lxml")
